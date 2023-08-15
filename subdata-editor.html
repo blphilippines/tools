@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HTML Class Editor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        #container {
+            background-color: #fff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .myButton {
+            box-shadow: inset 0px 1px 0px 0px #a4e271;
+            background: linear-gradient(to bottom, #89c403 5%, #77a809 100%);
+            background-color: #89c403;
+            border-radius: 6px;
+            border: 1px solid #74b807;
+            display: inline-block;
+            cursor: pointer;
+            color: #ffffff;
+            font-family: Arial;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 10px 12px;
+            text-decoration: none;
+            text-shadow: 0px 1px 0px #528009;
+            margin: 5px;
+            transition: background 0.2s;
+        }
+
+        .myButton:hover {
+            background: linear-gradient(to bottom, #77a809 5%, #89c403 100%);
+            background-color: #77a809;
+        }
+
+        .myButton:active {
+            position: relative;
+            top: 1px;
+        }
+
+        #fileInput {
+            display: none;
+        }
+
+        .logo {
+            display: block;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .logo img {
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h2>BL - Subdata Editor</h2>
+        <div class="logo">
+            <img src="https://apps.shift4shop.com/cdn-cgi/image/quality%3D100/assets/images/brightlocal-logo.png" alt="Logo">
+        </div>
+        <label for="fileInput" class="myButton">Upload Subdata</label>
+        <button id="clearButton" class="myButton" style="display: none;">Clear</button>
+        <input type="file" id="fileInput">
+        <div id="buttonContainer" style="display: none;">
+            <button id="editButton" class="myButton">Edit and Download</button>
+            <a id="downloadLink" class="myButton" style="display: none;">Downloaded</a>
+        </div>
+    </div>
+
+    <script>
+        const fileInput = document.getElementById('fileInput');
+        const clearButton = document.getElementById('clearButton');
+        const editButton = document.getElementById('editButton');
+        const downloadLink = document.getElementById('downloadLink');
+        const buttonContainer = document.getElementById('buttonContainer');
+
+        fileInput.addEventListener('change', () => {
+            clearButton.style.display = 'inline-block';
+            buttonContainer.style.display = 'block';
+        });
+
+        clearButton.addEventListener('click', () => {
+            location.reload(); // Reload the page
+        });
+
+        editButton.addEventListener('click', () => {
+            const file = fileInput.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    const fileContent = event.target.result;
+                    const editedContent = fileContent.replace(/class>/g, 'class="">');
+                    const editedFilename = file.name.replace('.html', '-edited.html');
+                    const editedDataUrl = 'data:text/html;charset=utf-8,' + encodeURIComponent(editedContent);
+
+                    // Create a download link
+                    const newDownloadLink = document.createElement('a');
+                    newDownloadLink.href = editedDataUrl;
+                    newDownloadLink.download = editedFilename;
+                    newDownloadLink.textContent = 'Downloaded';
+                    newDownloadLink.className = 'myButton';
+
+                    // Replace the edit button with the download link
+                    editButton.parentNode.replaceChild(newDownloadLink, editButton);
+
+                    // Trigger the download automatically
+                    newDownloadLink.click();
+                };
+                reader.readAsText(file);
+            }
+        });
+    </script>
+</body>
+</html>
