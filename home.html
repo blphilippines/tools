@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BL - TOOL</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        #container {
+            background-color: #fff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            gap: 20px;
+        }
+
+        .myButton {
+            box-shadow: inset 0px 1px 0px 0px #a4e271;
+            background: linear-gradient(to bottom, #89c403 5%, #77a809 100%);
+            background-color: #89c403;
+            border-radius: 6px;
+            border: 1px solid #74b807;
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            cursor: pointer;
+            color: #ffffff;
+            font-family: Arial;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 10px 12px;
+            text-decoration: none;
+            text-shadow: 0px 1px 0px #528009;
+            width: 100px;
+            height: 100px;
+            transition: background 0.2s;
+        }
+
+        .myButton:hover {
+            background: linear-gradient(to bottom, #77a809 5%, #89c403 100%);
+            background-color: #77a809;
+        }
+
+        .myButton:active {
+            position: relative;
+            top: 1px;
+        }
+
+        .logo {
+            display: block;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .logo img {
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h2>BL - TOOL</h2>
+        <div class="logo">
+            <a href="https://media.tenor.com/PS6medrGxqwAAAAd/cat-kiss.gif" target="_blank">
+                <img src="https://apps.shift4shop.com/cdn-cgi/image/quality%3D100/assets/images/brightlocal-logo.png" alt="Logo">
+            </a>
+        </div>
+        <div class="button-container">
+            <a href="https://blphilippines.github.io/tools/subdata-editor.html" class="myButton">SubData Editor</a>
+            <a href="https://blphilippines.github.io/tools/cover-photo-editor.html" class="myButton">Cover Photo Editor</a>
+        </div>
+    </div>
+</body>
+</html>
