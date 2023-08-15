@@ -25,6 +25,19 @@
             position: relative;
         }
 
+        #bottomContainer {
+            position: fixed;
+            bottom: 0;
+            left: 50%; /* Center the element horizontally */
+            transform: translateX(-50%); /* Move the element back by half its width */
+            width: auto; /* Allow the container to expand as needed */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f5f5f5;
+            padding: 10px 0;
+        }
+
         .button-container {
             display: flex;
             justify-content: space-between;
@@ -88,6 +101,9 @@
             <a href="https://blphilippines.github.io/tools/subdata-editor.html" class="myButton">SubData Editor</a>
             <a href="https://blphilippines.github.io/tools/cover-photo-editor.html" class="myButton">Cover Photo Editor</a>
         </div>
+    </div>
+    <div id="bottomContainer">
+        &copy;2023 <strong>BL - Research Dept. - Dan</strong>
     </div>
 </body>
 </html>
