@@ -111,17 +111,23 @@
                     const editedFilename = file.name.replace('.html', '-edited.html');
                     const editedDataUrl = 'data:text/html;charset=utf-8,' + encodeURIComponent(editedContent);
 
-                    // Create a download link
                     const newDownloadLink = document.createElement('a');
                     newDownloadLink.href = editedDataUrl;
                     newDownloadLink.download = editedFilename;
                     newDownloadLink.textContent = 'Downloaded';
                     newDownloadLink.className = 'myButton';
 
-                    // Replace the edit button with the download link
+                    newDownloadLink.addEventListener('click', () => {
+                        setTimeout(() => {
+                            location.reload(); // Refresh the page after a delay
+                        }, 1000); // Adjust the delay time as needed
+
+                        // If you want an immediate refresh, you can use the following line instead:
+                        // location.reload();
+                    });
+
                     editButton.parentNode.replaceChild(newDownloadLink, editButton);
 
-                    // Trigger the download automatically
                     newDownloadLink.click();
                 };
                 reader.readAsText(file);
