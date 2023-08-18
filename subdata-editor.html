@@ -135,7 +135,7 @@
                 const reader = new FileReader();
                 reader.onload = (event) => {
                     const fileContent = event.target.result;
-                    const editedContent = fileContent.replace(/\^\s*/g, ''); // Remove ^\s* pattern
+                    const editedContent = fileContent.replace(/^\s+/mg, ''); // Remove leading white spaces
                     const editedFilename = file.name.replace('.html', '-edited.html');
                     const editedDataUrl = 'data:text/html;charset=utf-8,' + encodeURIComponent(editedContent);
 
