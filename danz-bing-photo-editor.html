@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DAN - Photo Editor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        #container {
+            background-color: #fff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        #generateButtonContainer {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        #generateButton {
+            box-shadow: inset 0px 1px 0px 0px #a4e271;
+            background: linear-gradient(to bottom, #89c403 5%, #77a809 100%);
+            background-color: #89c403;
+            border-radius: 6px;
+            border: 1px solid #74b807;
+            display: inline-block;
+            cursor: pointer;
+            color: #ffffff;
+            font-family: Arial;
+            font-size: 16px;
+            font-weight: bold;
+            padding: 6px 24px;
+            text-decoration: none;
+            text-shadow: 0px 1px 0px #528009;
+            transition: background 0.2s;
+        }
+
+        #bottomContainer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f5f5f5;
+            padding: 10px 0;
+        }
+
+        #logoContainer {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+        }
+
+        h1 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        h2 {
+            margin-top: 20px;
+        }
+
+        label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+            color: #666;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .clearButton {
+            box-shadow: inset 0px 1px 0px 0px #a4e271;
+            background: linear-gradient(to bottom, #ff6347 5%, #ff3333 100%);
+            background-color: #ff6347;
+            border-radius: 6px;
+            border: 1px solid #d83526;
+            display: inline-block;
+            cursor: pointer;
+            color: #ffffff;
+            font-family: Arial;
+            font-size: 16px;
+            font-weight: bold;
+            padding: 6px 24px;
+            text-decoration: none;
+            text-shadow: 0px 1px 0px #8f8f8f;
+            transition: background 0.2s;
+            margin-left: 10px;
+        }
+
+        .customFileUpload {
+            box-shadow: inset 0px 1px 0px 0px #a4e271;
+            background: linear-gradient(to bottom, #89c403 5%, #77a809 100%);
+            background-color: #89c403;
+            border-radius: 6px;
+            border: 1px solid #74b807;
+            display: inline-block;
+            cursor: pointer;
+            color: #ffffff;
+            font-family: Arial;
+            font-size: 16px;
+            font-weight: bold;
+            padding: 6px 24px;
+            text-decoration: none;
+            text-shadow: 0px 1px 0px #528009;
+            transition: background 0.2s;
+        }
+
+        .customFileUpload:hover {
+            background: linear-gradient(to bottom, #77a809 5%, #89c403 100%);
+            background-color: #77a809;
+        }
+
+        .customFileUpload:active {
+            position: relative;
+            top: 1px;
+        }
+
+        #formatSelection {
+            width: 100%;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        #formatSelection input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        #otherSizeLabel {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+            color: #666;
+        }
+
+        #otherSizeTextbox1 {
+            width: 60px;
+            margin-right: 10px;
+        }
+
+        #otherSizeTextbox2 {
+            width: 60px;
+        }
+
+        #previewContainer {
+            width: 100%;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        #preview {
+            max-width: 100%;
+            max-height: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        #icon {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 100px;
+            height: 100px;
+            cursor: pointer;
+            z-index: 999;
+        }
+
+        .formatColumn {
+            float: left;
+            width: calc(33.33% - 20px); /* Adjust the width as needed */
+            margin-right: 20px;
+        }
+
+        .formatColumn:last-child {
+            margin-right: 0;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h2>Photo Editor</h2>
+        <div id="formatSelection">
+            <label class="customFileUpload" for="imageUpload">Choose File</label>
+            <input type="file" id="imageUpload" accept="image/*">
+            
+            <input type="file" id="imageUpload" class="customFileUpload" accept="image/*">
+            <a href="#" class="customFileUpload" id="selectAllButton">Select All</a><br>
+            <a href="#" class="customFileUpload clearButton" id="clearButton">Clear</a>
+
+            <h2>Select Formats:</h2>
+            <div class="formatColumn">
+                <label for="ailoq">
+                    <input type="checkbox" id="ailoq"> Ailoq (1140x200)
+                </label><br>
+            </div>
+
+            <div class="formatColumn">
+                <label for="lacartes">
+                    <input type="checkbox" id="lacartes"> Lacartes (1058x250)
+                </label><br>
+            </div>
+
+            <div class="formatColumn">
+                
+                <label id="otherSizeLabel" for="otherSize">
+                    <input type="checkbox" id="otherSize"> Other Size:
+                    <input type="text" id="otherSizeTextbox1" placeholder="Width">
+                    <input type="text" id="otherSizeTextbox2" placeholder="Height">
+                </label><br>
+            </div>
+
+        </div>
+
+        <div id="generateButtonContainer">
+            <a href="#" class="customFileUpload" id="generateButton">Generate and Download</a>
+        </div>
+
+        <div id="previewContainer">
+            <h2>Preview:</h2>
+            <img id="preview" src="http://i.imgur.com/y6Xhw0v.jpg" alt="Image Preview"> <!-- Default logo image URL -->
+        </div>
+
+        <div id="bottomContainer">
+            &copy;2023 <strong>Danmar Bantolinao</strong>
+        </div>
+    </div>
+
+    <div id="logoContainer">
+        <a href="https://blphilippines.github.io/tools/home.html">
+            <img src="http://i.imgur.com/doshpuL.png" alt="Home Logo">
+        </a>
+    </div>
+
+    <img id="icon" src="http://i.imgur.com/asK5dEN.png" alt="Icon">
+    
+    <script>
+        const imageUpload = document.getElementById('imageUpload');
+        const formats = [
+            { id: 'ailoq', size: '1140x200' },
+            { id: 'lacartes', size: '1058x250' },
+        ];
+        const generateButton = document.getElementById('generateButton');
+        const previewImage = document.getElementById('preview');
+        
+        imageUpload.addEventListener('change', function() {
+            const selectedImage = imageUpload.files[0];
+            const imageUrl = URL.createObjectURL(selectedImage);
+            previewImage.src = imageUrl;
+        });
+        
+        generateButton.addEventListener('click', function() {
+            const selectedFormats = formats.filter(format => {
+                const checkbox = document.getElementById(format.id);
+                return checkbox.checked;
+            });
+
+            // Check if "Other Size" is selected
+            const otherSizeCheckbox = document.getElementById('otherSize');
+            if (otherSizeCheckbox.checked) {
+                const widthTextbox = document.getElementById('otherSizeTextbox1');
+                const heightTextbox = document.getElementById('otherSizeTextbox2');
+                
+                // Check if both width and height are provided
+                if (widthTextbox.value && heightTextbox.value) {
+                    selectedFormats.push({
+                        id: 'otherSize',
+                        size: `${widthTextbox.value}x${heightTextbox.value}`,
+                    });
+                }
+            }
+
+            if (selectedFormats.length > 0) {
+                const img = new Image();
+                img.onload = function() {
+                    for (const format of selectedFormats) {
+                        const canvas = document.createElement('canvas');
+                        const context = canvas.getContext('2d');
+
+                        const canvasWidth = parseInt(format.size.split('x')[0]);
+                        const canvasHeight = parseInt(format.size.split('x')[1]);
+
+                        canvas.width = canvasWidth;
+                        canvas.height = canvasHeight;
+
+                        // Fill the canvas with white background
+                        context.fillStyle = 'white';
+                        context.fillRect(0, 0, canvas.width, canvas.height);
+
+                        if (format.id === 'startUS2nd') {
+                            // For StartUS - 2nd format, place the image at (0, 0) without adjusting its size
+                            context.drawImage(img, 0, 0);
+                        } else if (format.id === 'otherSize') {
+                            // For "Other Size" format, calculate scaling and positioning
+                            const scaleFactor = Math.min(canvas.width / img.width, canvas.height / img.height);
+                            const scaledWidth = img.width * scaleFactor;
+                            const scaledHeight = img.height * scaleFactor;
+
+                            const x = (canvas.width - scaledWidth) / 2;
+                            const y = (canvas.height - scaledHeight) / 2;
+
+                            context.drawImage(img, x, y, scaledWidth, scaledHeight);
+                        } else {
+                            // For other formats, calculate scaling and positioning
+                            const scaleFactor = Math.min(canvas.width / img.width, canvas.height / img.height);
+                            const scaledWidth = img.width * scaleFactor;
+                            const scaledHeight = img.height * scaleFactor;
+
+                            const x = (canvas.width - scaledWidth) / 2;
+                            const y = (canvas.height - scaledHeight) / 2;
+
+                            context.drawImage(img, x, y, scaledWidth, scaledHeight);
+                        }
+
+                        const formattedImageUrl = canvas.toDataURL('image/jpeg');
+                        const downloadLink = document.createElement('a');
+                        const filename = `${format.id}_${format.size}.jpg`.replace('Checkbox_', '');
+                        downloadLink.href = formattedImageUrl;
+                        downloadLink.download = filename;
+                        downloadLink.click();
+                    }
+                };
+
+                img.src = previewImage.src;
+            } else {
+                alert('Please select at least one format.');
+            }
+        });
+        
+        // Open a new tab when the icon is clicked
+        document.getElementById('icon').addEventListener('click', function() {
+            window.open('https://media.tenor.com/PS6medrGxqwAAAAd/cat-kiss.gif', '_blank');
+        });
+        
+        // Allow numbers only in the manual sizing textboxes
+        const otherSizeTextbox1 = document.getElementById('otherSizeTextbox1');
+        const otherSizeTextbox2 = document.getElementById('otherSizeTextbox2');
+        
+        otherSizeTextbox1.addEventListener('input', function() {
+            otherSizeTextbox1.value = otherSizeTextbox1.value.replace(/[^0-9]/g, '');
+        });
+        
+        otherSizeTextbox2.addEventListener('input', function() {
+            otherSizeTextbox2.value = otherSizeTextbox2.value.replace(/[^0-9]/g, '');
+        });
+
+        // Add event listener to the Clear button
+        const clearButton = document.getElementById('clearButton');
+        clearButton.addEventListener('click', function() {
+            location.reload(); // Reload the page
+        });
+
+        const selectAllButton = document.getElementById('selectAllButton');
+        selectAllButton.addEventListener('click', function() {
+            // Iterate through checkboxes and select all except "StartUS - 2nd" and "Other Size"
+            formats.forEach(format => {
+                if (format.id !== 'startUS2nd' && format.id !== 'otherSize') {
+                    const checkbox = document.getElementById(format.id);
+                    checkbox.checked = true;
+                }
+            });
+        });
+
+
+    </script>
+</body>
+</html>
