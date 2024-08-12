@@ -209,14 +209,14 @@
 
             <h2>Select Formats:</h2>
             <div class="formatColumn">
-                <label for="ailoq">
-                    <input type="checkbox" id="ailoq"> Ailoq (1140x200)
+                <label for="logo">
+                    <input type="checkbox" id="logo"> LOGO (500x500)
                 </label><br>
             </div>
 
             <div class="formatColumn">
-                <label for="lacartes">
-                    <input type="checkbox" id="lacartes"> Lacartes (1058x250)
+                <label for="otherphoto">
+                    <input type="checkbox" id="otherphoto"> Other Photo (750x500)
                 </label><br>
             </div>
 
@@ -256,8 +256,8 @@
     <script>
         const imageUpload = document.getElementById('imageUpload');
         const formats = [
-            { id: 'ailoq', size: '1140x200' },
-            { id: 'lacartes', size: '1058x250' },
+            { id: 'logo', size: '1140x200' },
+            { id: 'otherphoto', size: '1058x250' },
         ];
         const generateButton = document.getElementById('generateButton');
         const previewImage = document.getElementById('preview');
