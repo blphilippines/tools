@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>DAN - BING Photo Editor</title>
+    <title>DAN - Bing Photo Editor</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -198,7 +198,7 @@
 </head>
 <body>
     <div id="container">
-        <h2>BING Photo Editor</h2>
+        <h2>Bing Photo Editor</h2>
         <div id="formatSelection">
             <label class="customFileUpload" for="imageUpload">Choose File</label>
             <input type="file" id="imageUpload" accept="image/*">
@@ -209,14 +209,8 @@
 
             <h2>Select Formats:</h2>
             <div class="formatColumn">
-                <label for="logo">
-                    <input type="checkbox" id="logo"> LOGO (500x500)
-                </label><br>
-            </div>
-
-            <div class="formatColumn">
-                <label for="otherphoto">
-                    <input type="checkbox" id="otherphoto"> Other Photo (750x500)
+                <label for="photoresize">
+                    <input type="checkbox" id="photoresize"> 480x360
                 </label><br>
             </div>
 
@@ -256,8 +250,7 @@
     <script>
         const imageUpload = document.getElementById('imageUpload');
         const formats = [
-            { id: 'logo', size: '500x500' },
-            { id: 'otherphoto', size: '750x500' },
+            { id: 'photoresize', size: '480x360' },
         ];
         const generateButton = document.getElementById('generateButton');
         const previewImage = document.getElementById('preview');
