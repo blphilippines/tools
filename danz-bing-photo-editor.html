@@ -209,9 +209,19 @@
 
             <h2>Select Formats:</h2>
             <div class="formatColumn">
-                <label for="photoresize">
-                    <input type="checkbox" id="photoresize"> 480x360
+
+                <label for="bingformat">
+                    <input type="checkbox" id="bingformat"> Bing 480x360
                 </label><br>
+
+            </div>
+
+            <div class="formatColumn">
+
+                <label for="googleformat">
+                    <input type="checkbox" id="googleformat"> Google 500x500
+                </label><br>
+
             </div>
 
             <div class="formatColumn">
@@ -221,6 +231,7 @@
                     <input type="text" id="otherSizeTextbox1" placeholder="Width">
                     <input type="text" id="otherSizeTextbox2" placeholder="Height">
                 </label><br>
+
             </div>
 
         </div>
@@ -250,7 +261,8 @@
     <script>
         const imageUpload = document.getElementById('imageUpload');
         const formats = [
-            { id: 'photoresize', size: '480x360' },
+            { id: 'bingformat', size: '480x360' },
+            { id: 'googleformat', size: '500x500' },
         ];
         const generateButton = document.getElementById('generateButton');
         const previewImage = document.getElementById('preview');
